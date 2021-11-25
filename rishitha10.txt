@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main()
+{
+    int b=1 ;
+    for (b=1;b<20 ;b++)
+    {
+        printf ("b after incremented after even number is %d\n",++b);
+    }
+    
+    return 0;
+}
