@@ -1,0 +1,42 @@
+import numpy as np
+
+
+
+def weather_model(t, a, b, c):
+    return a * t**2 + b * t + c
+
+
+time = np.arange(0, 10, 0.1)
+temperature_coefficients = [1, -6, 9]  
+temperature = weather_model(time, *temperature_coefficients)
+
+equation_str = f'Temperature Model: {temperature_coefficients[0]}*t^2 + {temperature_coefficients[1]}*t + {temperature_coefficients[2]}'
+general_equation_str = f'General Form: {temperature_coefficients[0]}*t^2 + {temperature_coefficients[1]}*t + {temperature_coefficients[2]}'
+
+
+print(equation_str)
+def find_roots(a, b, c):
+    delta = b**2 - 4*a*c
+    
+  
+    if delta < 0:
+        return None
+    else:
+      
+        root1 = (-b + np.sqrt(delta)) / (2*a)
+        root2 = (-b - np.sqrt(delta)) / (2*a)
+        return root1, root2
+a, b, c = temperature_coefficients
+print('[a,b,c]=',temperature_coefficients)
+roots = find_roots(a, b, c)
+print("Roots:", roots)
+plt.plot(time, temperature, label='Temperature Model')
+plt.xlabel('Time')
+plt.ylabel('Temperature')
+plt.title(f'Weather Modeling using Quadratic Equation\n{equation_str}\n{general_equation_str}')
+plt.legend()
+if roots:
+    plt.scatter(roots, [0, 0], color='red', marker='o', label='Roots')
+
+plt.legend()
+plt.show()
